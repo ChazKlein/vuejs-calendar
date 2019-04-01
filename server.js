@@ -3,9 +3,21 @@ require('dotenv').config({ silent: true });
 const express = require('express');
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const http = require('http');
 const moment = require('moment-timezone');
+// Define Pusher
+var Pusher = require('pusher');
+
+// Create pusher instance
+var pusher = new Pusher({
+	appId: process.env.PUSHER_APP_ID,
+	key: process.env.PUSHER_APP_KEY,
+	secret: process.env.PUSHER_APP_SECRET,
+  cluster: process.env.PUSHER_CLUSTER
+});
+
 moment.tz.setDefault('UTC');
 const serialize = require('serialize-javascript');
 
@@ -55,7 +67,18 @@ app.get('/', (req, res) => {
 
 // post to add_event and push in data to events array
 app.use(require('body-parser').json());
+
 app.post('/add_event', (req, res) => {
+  // pusher.trigger('calendar', 'update', {
+  //   description: req.body.description,
+  //   date: moment(req.body.date)
+  // });
+
+  pusher.trigger('calendar', 'event_added', {
+    description: req.body.description,
+    date: moment(req.body.date)
+  });
+
   events.push({
     description: req.body.description,
     date: moment(req.body.date)
