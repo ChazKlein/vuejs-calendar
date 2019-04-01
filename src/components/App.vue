@@ -2,6 +2,7 @@
     <div>
         <div id="header">
             <div>
+                <img src="../assets/logo.png" alt="">
                 <h1>Vue.js Calendar</h1>
             </div>
             <div>
@@ -33,7 +34,7 @@
     export default {
         data() {
             return {
-                weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
             };
         },
         computed: {
@@ -59,7 +60,7 @@
                 currentDay = this.$moment(days[0]);
 
                 const SUNDAY = 0;
-                const MONDAY = 1;
+                const MONDAY = 0;
 
                 // If currentDay is not equal to Monday
                 if (currentDay.day() !== MONDAY) {
