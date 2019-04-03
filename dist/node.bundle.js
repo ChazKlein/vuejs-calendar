@@ -28044,12 +28044,10 @@ exports.default = function (events) {
     return new _vue2.default({
         data: {
             moment: _momentTimezone2.default
-            // pusherUpdate: false
         },
         components: {
             App: _App2.default
         },
-
         store: _store2.default,
         render: function render(createElement) {
             return createElement('div', { attrs: { id: 'app' } }, [createElement('app')]);
@@ -28076,13 +28074,6 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _momentTimezone2.default.tz.setDefault('UTC');
-
-// var pusher = new Pusher('afebcf4b71fe32b59f18', {
-//     cluster: 'us2',
-//     forceTLS: true
-// });
-
-// Pusher.logToConsole = true;
 // Create prototype to register library as data property
 Object.defineProperty(_vue2.default.prototype, '$moment', {
     get: function get() {
